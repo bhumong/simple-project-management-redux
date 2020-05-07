@@ -8,7 +8,7 @@ const ProjectHelper = {
       return {id: datas.id, ...data}
     });
     return fbprojects;
-  },
+  }, 
 
   addProject : async (content : any, title : any) => {
     let addProject = await firebase

@@ -1,9 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ProjectSummary from './ProjectSummary';
-import { ProjectContext } from '../../store/contexts/PorjectContext';
 
 function ProjectList(props: any) {
-  const {projects} = useContext(ProjectContext);
+  const projects = [
+    {title: 'satu', id:1, content: 'satu'},
+    {title: 'dua', id:2, content: 'dua'},
+    {title: 'tiga', id:3, content: 'tiga'},
+  ];
 
   return (
     <div className='project-list section'>

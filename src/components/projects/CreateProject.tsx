@@ -1,6 +1,9 @@
 import React from 'react';
+import createProject from '../../store/actions/projectAction';
+import { connect } from 'react-redux';
+import AnyInterface from '../../helpers/interfaces/AnyInterface';
 
-class CreateProject extends React.Component {
+class CreateProject extends React.Component <AnyInterface> {
   state = {
     title: '',
     content: '',
@@ -14,6 +17,8 @@ class CreateProject extends React.Component {
   }
   handleSubmit = (e : any) => {
     e.preventDefault();
+    console.log(this.props)
+    this.props.createProject(this.state);
   }
 
   render() {
@@ -46,5 +51,9 @@ class CreateProject extends React.Component {
   }
 
 }
-
-export default CreateProject;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    createProject: (project: any) => dispatch(createProject(project))
+  }
+}
+export default connect(null, mapDispatchToProps)(CreateProject);

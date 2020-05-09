@@ -1,4 +1,4 @@
-import firebase from '../config/FireBaseConfig';
+import firebase from '../configs/FireBaseConfig';
 
 const ProjectHelper = {
   getProjects: async () => {

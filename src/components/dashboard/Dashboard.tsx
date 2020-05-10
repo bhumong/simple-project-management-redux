@@ -3,9 +3,13 @@ import Notification from './Notification';
 import ProjectList from '../projects/ProjectList';
 import { connect } from 'react-redux';
 import AnyInterface from '../../helpers/interfaces/AnyInterface';
-
+import { fetchProject } from '../../store/actions/projectAction'
 
 class Dashboard extends React.Component <AnyInterface> {
+  componentDidMount() {
+  	this.props.fetchProject()
+  }
+
   render() {
     const {projects} = this.props;
     return (
@@ -27,7 +31,8 @@ class Dashboard extends React.Component <AnyInterface> {
 }
 const mapStateToProps = (state: any) => {
   return {
-    projects: state.project.projects
+    projects: state.project.projects,
   }
 }
-export default connect(mapStateToProps)(Dashboard);
+
+export default connect(mapStateToProps, {fetchProject}) (Dashboard);

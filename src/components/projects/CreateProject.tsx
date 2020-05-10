@@ -17,7 +17,6 @@ class CreateProject extends React.Component <AnyInterface> {
   }
   handleSubmit = (e : any) => {
     e.preventDefault();
-    console.log(this.props)
     this.props.createProject(this.state);
   }
 

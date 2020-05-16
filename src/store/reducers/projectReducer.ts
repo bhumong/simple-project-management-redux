@@ -1,4 +1,4 @@
-const projectReducer = (state = [], action: any) => {
+const projectReducer = (state = {}, action: any) => {
   switch (action.type) {
     case 'CREATE_PROJECT':
       console.log('created project', action);

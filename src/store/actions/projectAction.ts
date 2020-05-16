@@ -17,7 +17,7 @@ const createProject = (project: any) => {
   }
 }
 
-export const fetchProject = () => {
+export const fetchProjects = () => {
   return (dispatch: any) => {
     dispatch( {type: 'FETCH_REQUEST'} );
     return firebase
@@ -31,6 +31,28 @@ export const fetchProject = () => {
           return { id: datas.id, ...data }
         });
       	dispatch( {type: 'FETCH_SUCCESS', payload: fbprojects } )
+      }).catch( (error: any) => {
+        console.log(error);
+      	dispatch( {type: 'FETCH_ERROR', error} )
+      })
+  }
+}
+
+export const fetchProject = (id: any) => {
+  return (dispatch: any) => {
+    dispatch( {type: 'FETCH_REQUEST'} );
+    return firebase
+      .firestore()
+      .collection('projects')
+      .doc(id)
+      .get()
+      .then((response: any) => {
+        console.log(response);
+        if (response.exists) {
+          dispatch({ type: 'FETCH_SUCCESS', payload: [{id, ...response.data()}] })
+        } else {
+          alert("No such project");
+        }
       }).catch( (error: any) => {
         console.log(error);
       	dispatch( {type: 'FETCH_ERROR', error} )

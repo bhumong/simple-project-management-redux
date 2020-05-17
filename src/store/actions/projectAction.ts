@@ -25,14 +25,12 @@ export const fetchProjects = () => {
       .collection('projects')
       .get()
       .then((reponse: any) => {
-        console.log(reponse);
         let fbprojects = reponse.docs.map((datas: any) => {
           let data: any = datas.data();
           return { id: datas.id, ...data }
         });
       	dispatch( {type: 'FETCH_SUCCESS', payload: fbprojects } )
       }).catch( (error: any) => {
-        console.log(error);
       	dispatch( {type: 'FETCH_ERROR', error} )
       })
   }
@@ -47,14 +45,12 @@ export const fetchProject = (id: any) => {
       .doc(id)
       .get()
       .then((response: any) => {
-        console.log(response);
         if (response.exists) {
           dispatch({ type: 'FETCH_SUCCESS', payload: [{id, ...response.data()}] })
         } else {
           alert("No such project");
         }
       }).catch( (error: any) => {
-        console.log(error);
       	dispatch( {type: 'FETCH_ERROR', error} )
       })
   }

@@ -11,7 +11,6 @@ function ProjectDetail(props: any) {
   }, [localFetch, id]);
 
   let project = projects.find((val : any) => id === val.id);
-  console.log(project);
   return (project) ? (
     <div className='container section project-details'>
         <div className="card z-depth-0">
@@ -33,7 +32,6 @@ function ProjectDetail(props: any) {
   ;
 }
 const mapStateToProps = (state: any, ownState: any) => {
-  console.log(state);
   return {
     projects: state.project.projects ? state.project.projects : [],
   }

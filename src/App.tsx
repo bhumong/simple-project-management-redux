@@ -7,19 +7,29 @@ import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import CreateProject from './components/projects/CreateProject';
 import './css/index.css';
+import { connect } from 'react-redux';
+import { checkUser } from './store/actions/authActions';
+import AnyInterface from './helpers/interfaces/AnyInterface';
 
-class App extends React.Component {
+class App extends React.Component <AnyInterface> {
+  componentDidMount() {
+    this.props.checkUser();
+  }
+  componentDidUpdate(prevProps: any) {
+    this.props.checkUser();
+  }
+  
   render() {
     return (
       <BrowserRouter>
             <div className="App">
-              <Navbar />
+              <Navbar user={this.props.user} />
               <Switch>
-                  <Route exact path='/' component={Dashboard} />
-                  <Route path='/project/:id' component={ProjectDetail} />
-                  <Route path='/create' component={CreateProject} />
-                  <Route path='/login' component={Signin} />
-                  <Route path='/signup' component={Signup} />
+                  <Route exact path='/' component={(props: any) => <Dashboard user={props.user}/>} />
+                  <Route path='/project/:id' component={(props: any) => <ProjectDetail user={props.user} />} />
+                  <Route path='/create' component={(props: any) => <CreateProject user={props.user} />}  />
+                  <Route path='/login' component={(props: any) => <Signin user={props.user} />} />
+                  <Route path='/signup' component={(props: any) => <Signup user={props.user}/>} />
               </Switch>
             </div>
       </BrowserRouter>
@@ -27,4 +37,9 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state: any) => {
+  return {
+    user: state.auth.user 
+  }
+}
+export default connect(mapStateToProps, {checkUser}) (App);

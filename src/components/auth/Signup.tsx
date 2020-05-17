@@ -1,6 +1,7 @@
 import React from 'react';
+import AnyInterface from '../../helpers/interfaces/AnyInterface';
 
-class Signup extends React.Component {
+class Signup extends React.Component <AnyInterface> {
   constructor (props : any) {
     super(props);
     this.handleChange = this.handleChange.bind(this);

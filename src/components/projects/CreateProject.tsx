@@ -28,7 +28,7 @@ class CreateProject extends React.Component <AnyInterface> {
             <h5 className='grey-text text-darken-3'>Create Project</h5>
           <div className="input-field" style={{marginTop: '2%'}}>
               <label htmlFor="title">Title</label>
-              <input type="text" name="title" id="title" onChange={this.handleChange}/>
+              <input type="text" name="title" id="title" autoComplete="off" onChange={this.handleChange}/>
             </div>
   
             <div className="input-field">

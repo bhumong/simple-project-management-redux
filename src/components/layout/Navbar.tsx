@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SigninLink from './SigninLink';
 import SignoutLink from './SignoutLink';
-import { connect } from 'react-redux';
 
 function Navbar(props: any) {
   const user = props.user ? props.user : null;

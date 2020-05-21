@@ -13,6 +13,7 @@ export const signIn = (creadential: any) => {
       })
   }
 }
+
 export const checkUser = () => {
   return (dispatch: any) => {
     firebase
@@ -21,8 +22,23 @@ export const checkUser = () => {
         if (user) {
           dispatch({type: 'LOGIN_SUCCESS', user});
         } else {
-          dispatch({type: 'LOGIN_ERROR'});
+          // dispatch({type: 'LOGIN_ERROR'});
         }
       });
+  }
+}
+
+export const signOut = () => {
+  return (dispatch: any) => {
+    firebase
+      .auth()
+      .signOut()
+      .then(response => {
+        dispatch({type: 'SIGNOUT_SUCCESS'});
+      })
+      .catch(err => {
+
+        dispatch({type: 'SIGNOUT_ERROR', err});
+      })
   }
 }

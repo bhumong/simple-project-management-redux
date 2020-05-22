@@ -6,7 +6,7 @@ export const signIn = (creadential: any) => {
       .auth()
       .signInWithEmailAndPassword(creadential.email, creadential.password)
       .then(response => {
-        console.log('login', response);
+        console.log('login');
         dispatch({type: 'LOGIN_SUCCESS', user: response.user});
       }).catch(error => {
         dispatch({type: 'LOGIN_ERROR', err: error});

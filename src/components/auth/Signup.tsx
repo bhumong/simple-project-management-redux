@@ -1,5 +1,6 @@
 import React from 'react';
 import AnyInterface from '../../helpers/interfaces/AnyInterface';
+import MustLogout from '../hoc/MustLogout';
 
 class Signup extends React.Component <AnyInterface> {
   constructor (props : any) {
@@ -61,4 +62,4 @@ class Signup extends React.Component <AnyInterface> {
   }
 }
 
-export default Signup;
+export default MustLogout(Signup, '/');

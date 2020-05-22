@@ -8,21 +8,23 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './store/reducers/rootReducer';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import firebase from './configs/FireBaseConfig';
 
 const store = createStore(
                 rootReducer,
                 applyMiddleware(thunk),
               );
 
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+firebase.auth().onAuthStateChanged(user => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+})
 M.AutoInit();
 
 // If you want your app to work offline and load faster, you can change

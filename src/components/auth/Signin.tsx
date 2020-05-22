@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
 import AnyInterface from '../../helpers/interfaces/AnyInterface';
+import MustLogout from '../hoc/MustLogout';
 
 class Signin extends React.Component <AnyInterface> {
   state = {
@@ -52,4 +53,4 @@ const mapStateToProps = (state: any) => {
     authError: state.auth.authError
   }
 }
-export default connect(mapStateToProps, {signIn}) (Signin);
+export default connect(mapStateToProps, {signIn}) (MustLogout(Signin, '/'));

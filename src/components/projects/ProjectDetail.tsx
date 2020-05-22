@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchProject } from '../../store/actions/projectAction';
+import { Redirect } from 'react-router-dom';
+import MustLogin from '../hoc/MustLogin';
 
 function ProjectDetail(props: any) {
   const id = props.match.params.id;
@@ -36,4 +38,4 @@ const mapStateToProps = (state: any, ownState: any) => {
     projects: state.project.projects ? state.project.projects : [],
   }
 }
-export default connect(mapStateToProps, {fetchProject}) (ProjectDetail);
+export default connect(mapStateToProps, {fetchProject}) (MustLogin(ProjectDetail, '/login') );

@@ -25,11 +25,11 @@ class App extends React.Component <AnyInterface> {
             <div className="App">
               <Navbar user={this.props.user} />
               <Switch>
-                  <Route exact path='/' component={(props: any) => <Dashboard {...props} user={props.user}/>} />
-                  <Route path='/project/:id' component={(props: any) => <ProjectDetail {...props} user={props.user} />} />
-                  <Route path='/create' component={(props: any) => <CreateProject {...props} user={props.user} />}  />
-                  <Route path='/login' component={(props: any) => <Signin {...props} user={props.user} />} />
-                  <Route path='/signup' component={(props: any) => <Signup {...props} user={props.user}/>} />
+                  <Route exact path='/' component={(props: any) => <Dashboard {...props} user={this.props.user}/>} />
+                  <Route path='/project/:id' component={(props: any) => <ProjectDetail {...props} user={this.props.user} />} />
+                  <Route path='/create' component={(props: any) => <CreateProject {...props} user={this.props.user} />}  />
+                  <Route path='/login' component={(props: any) => <Signin {...props} user={this.props.user} />} />
+                  <Route path='/signup' component={(props: any) => <Signup {...props} user={this.props.user}/>} />
               </Switch>
             </div>
       </BrowserRouter>

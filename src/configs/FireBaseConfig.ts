@@ -3,14 +3,15 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyBnZjCOj_xUj6LLYSbi6jolFshucgddi4Q",
-  authDomain: "simple-pm-fd14c.firebaseapp.com",
-  databaseURL: "https://simple-pm-fd14c.firebaseio.com",
-  projectId: "simple-pm-fd14c",
-  storageBucket: "simple-pm-fd14c.appspot.com",
-  messagingSenderId: "199020267942",
-  appId: "1:199020267942:web:42c03a27b0c96e84366767"
+  apiKey: process.env.REACT_APP_FIB_API_KEY,
+  authDomain: process.env.REACT_APP_FIB_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIB_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIB_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIB_STORAGE_BUCKETsimple,
+  messagingSenderId: process.env.REACT_APP_FIB_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIB_APP_ID 
 };
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 // firebase.firestore().settings({});

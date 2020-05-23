@@ -1,6 +1,9 @@
 import React from 'react';
 import AnyInterface from '../../helpers/interfaces/AnyInterface';
 import MustLogout from '../hoc/MustLogout';
+import { connect } from 'react-redux';
+import { signUp as actionSignup } from '../../store/actions/authActions';
+import { Redirect } from 'react-router-dom';
 
 class Signup extends React.Component <AnyInterface> {
   constructor (props : any) {
@@ -11,8 +14,8 @@ class Signup extends React.Component <AnyInterface> {
   state = {
     email: '', 
     password: '',
-    first_name: '', 
-    last_name: '',
+    firstName: '', 
+    lastName: '',
   };
 
   handleChange(e : any) {
@@ -23,37 +26,43 @@ class Signup extends React.Component <AnyInterface> {
   }
   handleSubmit(e : any) {
     e.preventDefault();
+    this.props.actionSignup(this.state);
   }
 
   render() {
+    const {authError} = this.props.auth;
+    const {status} = this.props.auth;
+    if (status === 'OK') return <Redirect to='/login' />
     return (
       <div className='container'>  
         <form onSubmit={this.handleSubmit} className='white'>
           <h5 className='grey-text text-darken-3'>Sign Up</h5>
          <div className="input-field" style={{marginTop: '2%'}}>
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" onChange={this.handleChange}/>
+            <input type="email" autoComplete="off" name="email" id="email" onChange={this.handleChange}/>
           </div>
   
           <div className="input-field">
             <label htmlFor="password">Password</label>
-            <input type="text" name="password" id="password" onChange={this.handleChange}/>
+            <input type="password" autoComplete="off" name="password" id="password" onChange={this.handleChange}/>
           </div>
   
           <div className="input-field">
-            <label htmlFor="first_name">First Name</label>
-            <input type="text" name="first_name" id="first_name" onChange={this.handleChange}/>
+            <label htmlFor="firstName">First Name</label>
+            <input type="text" autoComplete="off" name="firstName" id="firstName" onChange={this.handleChange}/>
           </div>
   
           <div className="input-field">
-            <label htmlFor="last_name">Last Name</label>
-            <input type="text" name="last_name" id="last_name" onChange={this.handleChange}/>
+            <label htmlFor="lastName">Last Name</label>
+            <input type="text" autoComplete="off" name="lastName" id="lastName" onChange={this.handleChange}/>
           </div>
   
           <div className="input-field">
             <button className="btn pink lighten-1 z-depth-0 waves-effect waves-dark">
               Signup
             </button>
+            <div className="red-text center">{authError ? (<p>{authError}</p>) : ''}</div>
+
           </div>
   
         </form>
@@ -61,5 +70,9 @@ class Signup extends React.Component <AnyInterface> {
     );
   }
 }
-
-export default MustLogout(Signup, '/');
+const mapStateToProps = (state: any) => {
+  return {
+    auth: state.auth
+  }  
+}
+export default connect(mapStateToProps, {actionSignup}) (MustLogout(Signup, '/'));

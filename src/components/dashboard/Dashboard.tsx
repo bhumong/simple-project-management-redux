@@ -4,7 +4,6 @@ import ProjectList from '../projects/ProjectList';
 import { connect } from 'react-redux';
 import AnyInterface from '../../helpers/interfaces/AnyInterface';
 import { fetchProjects } from '../../store/actions/projectAction';
-import MustLogin from '../hoc/MustLogin';
 
 class Dashboard extends React.Component <AnyInterface> {
   componentDidMount() {
@@ -36,4 +35,4 @@ const mapStateToProps = (state: any) => {
   }
 }
 
-export default connect(mapStateToProps, {fetchProjects}) (MustLogin(Dashboard, '/login'));
+export default connect(mapStateToProps, {fetchProjects}) (Dashboard);

@@ -1,6 +1,5 @@
 import React from 'react';
 import AnyInterface from '../../helpers/interfaces/AnyInterface';
-import MustLogout from '../hoc/MustLogout';
 import { connect } from 'react-redux';
 import { signUp as actionSignup } from '../../store/actions/authActions';
 import { Redirect } from 'react-router-dom';
@@ -75,4 +74,4 @@ const mapStateToProps = (state: any) => {
     auth: state.auth
   }  
 }
-export default connect(mapStateToProps, {actionSignup}) (MustLogout(Signup, '/'));
+export default connect(mapStateToProps, {actionSignup}) (Signup);

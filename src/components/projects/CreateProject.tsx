@@ -2,7 +2,6 @@ import React from 'react';
 import createProject from '../../store/actions/projectAction';
 import { connect } from 'react-redux';
 import AnyInterface from '../../helpers/interfaces/AnyInterface';
-import MustLogin from '../hoc/MustLogin';
 
 class CreateProject extends React.Component <AnyInterface> {
   state = {
@@ -56,4 +55,4 @@ const mapDispatchToProps = (dispatch: any) => {
     createProject: (project: any) => dispatch(createProject(project))
   }
 }
-export default connect(null, mapDispatchToProps) (MustLogin(CreateProject, '/login'));
+export default connect(null, mapDispatchToProps) (CreateProject);

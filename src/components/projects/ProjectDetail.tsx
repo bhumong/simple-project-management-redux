@@ -13,6 +13,7 @@ function ProjectDetail(props: any) {
   }, [localFetch, id]);
 
   let project = projects.find((val : any) => id === val.id);
+
   return (project) ? (
     <div className='container section project-details'>
         <div className="card z-depth-0">

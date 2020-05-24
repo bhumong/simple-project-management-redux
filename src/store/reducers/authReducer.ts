@@ -2,6 +2,7 @@ const initState = {
   authError: null,
   user: null,
   status: null,
+  userData: null
 }
 
 const authReducer = (state = initState, action: any) => {
@@ -9,14 +10,21 @@ const authReducer = (state = initState, action: any) => {
     case 'LOGIN_ERROR':
       return {
         ...state, 
-        authError: 'Login Fail',
+        authError: action.authError ? action.authError : 'Login Fail',
         user: null,
       };
     case 'LOGIN_SUCCESS':
       return {
         ...state, 
         authError: null,
-        user: action.user
+        user: action.user,
+        userData: action.userData
+      };
+    case 'FETCH_USER':
+      return {
+        ...state, 
+        authError: null,
+        user: action.user,
       };
     case 'SIGNOUT_SUCCESS':
       return {

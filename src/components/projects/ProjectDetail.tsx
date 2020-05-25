@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchProject } from '../../store/actions/projectAction';
 import { firstLetterUpper } from '../../helpers/StringHelper';
+import moment from 'moment';
 
 function ProjectDetail(props: any) {
   const id = props.match.params.id;
@@ -24,7 +25,7 @@ function ProjectDetail(props: any) {
 
           <div className="card-action gret lighten-4 grey-text">
             <div>Posted by the {firstLetterUpper(project?.authorFirstName) + ' ' + firstLetterUpper(project?.authorLastName)}</div>
-            <div>{project.createdAt.toDate().getDay() + '-' + project.createdAt.toDate().getMonth() + '-' + project.createdAt.toDate().getFullYear()}</div>
+            <div>{moment(project?.createdAt.toDate()).format('LLL')}</div>
           </div>
 
         </div>

@@ -2,6 +2,7 @@ import firebase from '../../configs/FireBaseConfig'
 
 export const signIn = (creadential: any) => {
   return (dispatch: any) => {
+    console.log('sign in');
     firebase
       .auth()
       .signInWithEmailAndPassword(creadential.email, creadential.password)
@@ -19,19 +20,17 @@ export const signIn = (creadential: any) => {
 
 export const checkUser = () => {
   return (dispatch: any) => {
+    console.log('check user');
     firebase
       .auth()
       .onAuthStateChanged(user => {
         if (user) {
-          console.log(user.emailVerified);
           if (user.emailVerified) {
             dispatch({type: 'FETCH_USER', user});
           } else {
             dispatch({type: 'LOGIN_ERROR', authError: "Email not verified"});
             firebase.auth().signOut();
           }
-        } else {
-          dispatch({type: 'SIGNOUT_SUCCESS'});
         }
       });
   }
@@ -39,6 +38,8 @@ export const checkUser = () => {
 
 export const getUserData = (user: any) => {
   return (dispatch: any) => {
+    console.log('get user data');
+
     if (user && user?.emailVerified) {
       firebase
         .firestore()
@@ -49,11 +50,12 @@ export const getUserData = (user: any) => {
           dispatch({type: 'LOGIN_SUCCESS', user, userData: response.data()})
         })
         .catch(error => {
+          firebase.auth().signOut();
           dispatch({type: 'LOGIN_ERROR', err: error});
-        })
+        });
     }
     else {
-      dispatch({type: 'LOGIN_ERROR'});
+      dispatch({type: 'SIGNOUT_SUCCESS'});
     }
   }
 }

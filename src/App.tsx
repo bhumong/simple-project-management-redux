@@ -15,20 +15,16 @@ import MustLoginRoute from './components/hoc/MustLoginRoute';
 
 class App extends React.Component <AnyInterface> {
   componentDidMount() {
-    if (this.props.initUser) {
-      this.props.checkUser();
-      if (!this.props.userData) {
-        this.props.getUserData(this.props.initUser);
-      }
+    this.props.checkUser();
+    if (!this.props.userData && this.props.user) {
+      this.props.getUserData(this.props.user);
     }
   }
 
   componentDidUpdate(prevProps: any) {
-    if (this.props.initUser) {
-      this.props.checkUser();
-      if (!this.props.userData) {
-        this.props.getUserData(this.props.initUser);
-      }
+    this.props.checkUser();
+    if (!this.props.userData && this.props.user) {
+      this.props.getUserData(this.props.user);
     }
   }
   
@@ -38,11 +34,11 @@ class App extends React.Component <AnyInterface> {
             <div className="App">
               <Navbar user={this.props.user} userData={this.props.userData} />
               <Switch>
-                  <MustLoginRoute user={this.props.initUser} exact path='/' component={(props: any) => <Dashboard {...props} user={this.props.user} userData={this.props.userData} />} />
-                  <MustLoginRoute user={this.props.initUser} path='/project/:id' component={(props: any) => <ProjectDetail {...props} user={this.props.user} userData={this.props.userData} />} />
-                  <MustLoginRoute user={this.props.initUser} path='/create' component={(props: any) => <CreateProject {...props} user={this.props.user} userData={this.props.userData} />}  />
-                  <MustLogoutRoute user={this.props.initUser} path='/login' component={(props: any) => <Signin {...props} user={this.props.user} userData={this.props.userData} />} />
-                  <MustLogoutRoute user={this.props.initUser} path='/signup' component={(props: any) => <Signup {...props} user={this.props.user} userData={this.props.userData}/>} />
+                  <MustLoginRoute user={this.props.user} exact path='/' component={(props: any) => <Dashboard {...props} user={this.props.user} userData={this.props.userData} />} />
+                  <MustLoginRoute user={this.props.user} path='/project/:id' component={(props: any) => <ProjectDetail {...props} user={this.props.user} userData={this.props.userData} />} />
+                  <MustLoginRoute user={this.props.user} path='/create' component={(props: any) => <CreateProject {...props} user={this.props.user} userData={this.props.userData} />}  />
+                  <MustLogoutRoute user={this.props.user} path='/login' component={(props: any) => <Signin {...props} user={this.props.user} userData={this.props.userData} />} />
+                  <MustLogoutRoute user={this.props.user} path='/signup' component={(props: any) => <Signup {...props} user={this.props.user} userData={this.props.userData}/>} />
               </Switch>
             </div>
       </BrowserRouter>

@@ -5,7 +5,7 @@ import moment from 'moment';
 
 function ProjectSummary(props: any) {
   const {project} = props;
-  console.log(project);
+
   return (
     <Link to={'/project/' + project.id}>
       <div className="card z-depth-0 project-summary">

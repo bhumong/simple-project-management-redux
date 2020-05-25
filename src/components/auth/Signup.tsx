@@ -27,7 +27,14 @@ class Signup extends React.Component <AnyInterface> {
     e.preventDefault();
     this.props.actionSignup(this.state);
   }
+  componentDidMount() {
+    console.log('signup mount');
+  }
 
+  componentDidUpdate(prevProps: any) {
+    console.log('signup update');
+  }
+  
   render() {
     const {authError} = this.props.auth;
     const {status} = this.props.auth;

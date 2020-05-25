@@ -10,6 +10,7 @@ export const signIn = (creadential: any) => {
         if (response.user?.emailVerified) {
           dispatch({type: 'LOGIN_SUCCESS', user: response.user});
         } else {
+          console.log('sign in email failed');
           dispatch({type: 'LOGIN_ERROR', authError: "Email not verified"});
         }
       }).catch(error => {
@@ -20,14 +21,15 @@ export const signIn = (creadential: any) => {
 
 export const checkUser = () => {
   return (dispatch: any) => {
-    console.log('check user');
     firebase
       .auth()
       .onAuthStateChanged(user => {
+        console.log('check user', user);
         if (user) {
           if (user.emailVerified) {
             dispatch({type: 'FETCH_USER', user});
           } else {
+            console.log('check user email failed')
             dispatch({type: 'LOGIN_ERROR', authError: "Email not verified"});
             firebase.auth().signOut();
           }
@@ -61,6 +63,7 @@ export const getUserData = (user: any) => {
 }
 
 export const signOut = () => {
+  console.log('signout')
   return (dispatch: any) => {
     firebase
       .auth()
@@ -83,23 +86,27 @@ export const signUp = (newUser: any) => {
         newUser.password
       )
       .then(response => {
-        return firebase
+        console.log('signiup', response.user?.uid);
+        firebase
           .firestore()
           .collection('users')
-          .doc(response?.user?.uid)
+          .doc(response.user?.uid)
           .set({
             firstName: newUser.firstName,
             lastName: newUser.lastName,
             initals: newUser.firstName[0] + newUser.lastName[0],
           })
           .then(innerRes => {
+            console.log('sign up create doc', innerRes);
             response.user?.sendEmailVerification();
             dispatch({type: 'SIGNUP_SUCCESS'});
           })
           .catch(innerErr => {
+            console.log('inner error', innerErr);
             dispatch({type: 'SIGNUP_ERROR', err: innerErr});
-          })
+          });
       }).catch(error => {
+        console.log('error', error);
         dispatch({type: 'SIGNUP_ERROR', err: error});
       })
   }

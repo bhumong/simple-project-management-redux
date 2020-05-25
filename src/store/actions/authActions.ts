@@ -23,13 +23,15 @@ export const checkUser = () => {
       .auth()
       .onAuthStateChanged(user => {
         if (user) {
+          console.log(user.emailVerified);
           if (user.emailVerified) {
             dispatch({type: 'FETCH_USER', user});
           } else {
+            dispatch({type: 'LOGIN_ERROR', authError: "Email not verified"});
             firebase.auth().signOut();
           }
         } else {
-          dispatch({type: 'LOGIN_ERROR', authError: "Email not verified"});
+          dispatch({type: 'SIGNOUT_SUCCESS'});
         }
       });
   }

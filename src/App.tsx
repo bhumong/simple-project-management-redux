@@ -16,12 +16,19 @@ import MustLoginRoute from './components/hoc/MustLoginRoute';
 class App extends React.Component <AnyInterface> {
   componentDidMount() {
     if (this.props.initUser) {
-      this.props.getUserData(this.props.initUser);
+      this.props.checkUser();
+      if (!this.props.userData) {
+        this.props.getUserData(this.props.initUser);
+      }
     }
   }
+
   componentDidUpdate(prevProps: any) {
     if (this.props.initUser) {
       this.props.checkUser();
+      if (!this.props.userData) {
+        this.props.getUserData(this.props.initUser);
+      }
     }
   }
   

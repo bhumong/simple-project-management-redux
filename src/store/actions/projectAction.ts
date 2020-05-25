@@ -3,11 +3,14 @@ import firebase from "../../configs/FireBaseConfig";
 const createProject = (project: any) => {
   return (dispatch: any, getState: any) => {
     const firestore =  firebase.firestore();
+    const currentState = getState();
+    const auth = currentState.auth;
+
     firestore.collection('projects').add({
       ...project,
-      authorFirstName: 'net',
-      authorLastName: 'ninja',
-      auhtorId: 1234,
+      authorFirstName: auth.userData.firstName,
+      authorLastName: auth.userData.lastName,
+      auhtorId: auth.user.uid,
       createdAt: new Date(),
     }).then( (response: any) => {
       dispatch({type: 'CREATE_PROJECT', project: project});

@@ -30,7 +30,8 @@ const authReducer = (state = initState, action: any) => {
       return {
         ...state, 
         authError: null,
-        user: null
+        user: null,
+        userData: null
       };
     case 'SIGNOUT_ERROR':
       return {

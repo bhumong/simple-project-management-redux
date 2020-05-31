@@ -22,7 +22,7 @@ const createProject = (project: any) => {
 
 export const fetchProjects = () => {
   return (dispatch: any) => {
-    dispatch( {type: 'FETCH_REQUEST'} );
+    // dispatch( {type: 'FETCH_REQUEST'} );
     return firebase
       .firestore()
       .collection('projects')
@@ -41,7 +41,7 @@ export const fetchProjects = () => {
 
 export const fetchProject = (id: any) => {
   return (dispatch: any) => {
-    dispatch( {type: 'FETCH_REQUEST'} );
+    // dispatch( {type: 'FETCH_REQUEST'} );
     return firebase
       .firestore()
       .collection('projects')

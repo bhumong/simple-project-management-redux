@@ -29,8 +29,8 @@ export const checkUser = () => {
           if (user.emailVerified) {
             dispatch({type: 'FETCH_USER', user});
           } else {
-            console.log('check user email failed')
-            dispatch({type: 'LOGIN_ERROR', authError: "Email not verified"});
+            // console.log('check user email failed')
+            // dispatch({type: 'LOGIN_ERROR', authError: "Email not verified"});
             firebase.auth().signOut();
           }
         }

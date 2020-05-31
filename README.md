@@ -6,9 +6,9 @@ Please watch his cool vidio :)
 
 ...this project is not exactly 100% same as NetNinja. The key difference list :
  - this project don't use some dependency ([react-redux-firebase](https://github.com/prescottprue/react-redux-firebase) and [redux-firestore](https://github.com/prescottprue/redux-firestore))
- - this project used [react hooks](https://reactjs.org/docs/hooks-intro.html) 
+ - used [react hooks](https://reactjs.org/docs/hooks-intro.html) 
  - To login, email must be verified. Link for verification will be send after sign up.
-
+ - Used Env file
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

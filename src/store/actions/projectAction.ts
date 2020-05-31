@@ -26,6 +26,7 @@ export const fetchProjects = () => {
     return firebase
       .firestore()
       .collection('projects')
+      .orderBy('createdAt', 'desc')
       .get()
       .then((reponse: any) => {
         let fbprojects = reponse.docs.map((datas: any) => {

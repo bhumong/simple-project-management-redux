@@ -5,6 +5,8 @@ export const fetchNotifications = () => {
     return firebase
       .firestore()
       .collection('notifications')
+      .limit(3)
+      .orderBy('time', 'desc')
       .get()
       .then((response: any) => {
         let notifications = response.docs.map((datas: any) => {

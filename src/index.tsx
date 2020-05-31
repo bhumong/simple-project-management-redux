@@ -19,7 +19,7 @@ firebase.auth().onAuthStateChanged(user => {
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <App/>
+        <App initUser={user}/>
       </Provider>
     </React.StrictMode>,
     document.getElementById('root')

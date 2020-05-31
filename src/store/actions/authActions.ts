@@ -2,7 +2,6 @@ import firebase from '../../configs/FireBaseConfig'
 
 export const signIn = (creadential: any) => {
   return (dispatch: any) => {
-    console.log('sign in');
     firebase
       .auth()
       .signInWithEmailAndPassword(creadential.email, creadential.password)
@@ -10,7 +9,6 @@ export const signIn = (creadential: any) => {
         if (response.user?.emailVerified) {
           dispatch({type: 'LOGIN_SUCCESS', user: response.user});
         } else {
-          console.log('sign in email failed');
           dispatch({type: 'LOGIN_ERROR', authError: "Email not verified"});
         }
       }).catch(error => {
@@ -19,28 +17,22 @@ export const signIn = (creadential: any) => {
   }
 }
 
-export const checkUser = () => {
+export const checkUser = (user: any) => {
   return (dispatch: any) => {
-    firebase
-      .auth()
-      .onAuthStateChanged(user => {
-        console.log('check user', user);
-        if (user) {
-          if (user.emailVerified) {
-            dispatch({type: 'FETCH_USER', user});
-          } else {
-            // console.log('check user email failed')
-            // dispatch({type: 'LOGIN_ERROR', authError: "Email not verified"});
-            firebase.auth().signOut();
-          }
-        }
-      });
+    if (user) {
+      if (user.emailVerified) {
+        return dispatch({type: 'FETCH_USER', user});
+      } else {
+        // dispatch({type: 'LOGIN_ERROR', authError: "Email not verified"});
+        firebase.auth().signOut();
+        return;
+      }
+    }
   }
 }
 
 export const getUserData = (user: any) => {
   return (dispatch: any) => {
-    console.log('get user data');
 
     if (user && user?.emailVerified) {
       firebase
@@ -63,7 +55,6 @@ export const getUserData = (user: any) => {
 }
 
 export const signOut = () => {
-  console.log('signout')
   return (dispatch: any) => {
     firebase
       .auth()

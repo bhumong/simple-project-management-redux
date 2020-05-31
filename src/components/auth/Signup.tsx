@@ -28,11 +28,9 @@ class Signup extends React.Component <AnyInterface> {
     this.props.actionSignup(this.state);
   }
   componentDidMount() {
-    console.log('signup mount');
   }
 
   componentDidUpdate(prevProps: any) {
-    console.log('signup update');
   }
   
   render() {

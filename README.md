@@ -1,6 +1,7 @@
 
 # MarioPlan
-Demo: bit.ly/bhumong-spm
+Demo: [link](https://bit.ly/bhumong-spm)
+
 MarioPlan is a simple project for learn react, redux & firebase. 
 This project was inspired by NetNinja ([Youtube Playlist](https://www.youtube.com/playlist?list=PL4cUxeGkcC9iWstfXntcj8f-dFZ4UtlN3)) and the [repository](https://github.com/iamshaunjp/React-Redux-Firebase-App) . 
 Please watch his cool vidio :)
